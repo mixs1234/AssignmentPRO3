@@ -1,16 +1,15 @@
-package dk.via.course_assignment_2.data;
+package dk.via.shared.data;
 
-import dk.via.course_assignment_2.business.persistence.NotFoundException;
-import dk.via.course_assignment_2.business.persistence.NotImplementedException;
-import dk.via.course_assignment_2.business.persistence.PersistenceException;
-import dk.via.course_assignment_2.business.persistence.ProductPartPersistence;
-import dk.via.course_assignment_2.model.ProductPart;
+import dk.via.shared.business.persistence.NotFoundException;
+import dk.via.shared.business.persistence.NotImplementedException;
+import dk.via.shared.business.persistence.PersistenceException;
+import dk.via.shared.business.persistence.ProductPartPersistence;
+import dk.via.shared.model.ProductPart;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 @Component
 public class ProductPartDAO implements ProductPartPersistence {

@@ -1,10 +1,8 @@
 package dk.via.course_assignment_2.business;
 
-import dk.via.course_assignment_2.business.persistence.*;
-import dk.via.course_assignment_2.model.Animal;
-import dk.via.course_assignment_2.model.Part;
-import dk.via.course_assignment_2.model.Product;
-import dk.via.course_assignment_2.model.ProductPart;
+import dk.via.shared.business.persistence.*;
+import dk.via.shared.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

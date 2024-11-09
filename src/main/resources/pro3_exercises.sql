@@ -19,12 +19,14 @@ DROP TABLE IF EXISTS Animal;
 CREATE TABLE Animal (
   reg_number uuid PRIMARY KEY DEFAULT generate_uuid(),
   weight decimal NOT NULL,
-  animal_type varchar(100) NOT NULL
+  animal_type varchar(100) NOT NULL,
+  arrival_date date DEFAULT current_date,
+  origin varchar(255) not null
 );
 
-INSERT INTO Animal (reg_number, weight, animal_type) VALUES
-('f6cb22ed-174d-4577-89e2-903f0af3e3be', 943.12, 'Cow'),
-('e2482505-e2a4-4aa3-9f4a-433cb5f5f643', 745.95, 'Cow');
+INSERT INTO Animal (reg_number, weight, animal_type, origin) VALUES
+('f6cb22ed-174d-4577-89e2-903f0af3e3be', 943.12, 'Cow', 'Johns farm'),
+('e2482505-e2a4-4aa3-9f4a-433cb5f5f643', 745.95, 'Cow', 'Johns farm');
 
 INSERT INTO Animal (weight, animal_type) VALUES
 (919.54, 'Cow'),

@@ -1,11 +1,11 @@
-package dk.via.course_assignment_2.business.persistence;
+package dk.via.shared.business.persistence;
 
-import dk.via.course_assignment_2.model.Animal;
+import dk.via.shared.model.Animal;
 
 import java.util.Collection;
 
 public interface AnimalPersistence {
-    Animal create(double weight, String animalType) throws PersistenceException;
+    Animal create(double weight, String animalType, String arrivalDate, String origin) throws PersistenceException;
     Collection<Animal> readAll() throws PersistenceException;
     void update(Animal animal) throws PersistenceException;
     void delete(Animal animal) throws PersistenceException;

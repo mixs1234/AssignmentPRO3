@@ -1,4 +1,4 @@
-package dk.via.course_assignment_2.business.persistence;
+package dk.via.shared.business.persistence;
 
 public class NotImplementedException extends PersistenceException {
 }

@@ -1,13 +1,13 @@
 package dk.via.course_assignment_2.service;
 
 import dk.via.course_assignment_2.grpc.*;
-import dk.via.course_assignment_2.model.Animal;
-import dk.via.course_assignment_2.model.Product;
+import dk.via.shared.model.Animal;
+import dk.via.shared.model.Product;
 import io.grpc.protobuf.StatusProto;
 import dk.via.course_assignment_2.business.SlaughterhouseSystem;
-import dk.via.course_assignment_2.business.persistence.NotFoundException;
-import dk.via.course_assignment_2.business.persistence.PersistenceException;
-import dk.via.course_assignment_2.business.persistence.ValidationException;
+import dk.via.shared.business.persistence.NotFoundException;
+import dk.via.shared.business.persistence.PersistenceException;
+import dk.via.shared.business.persistence.ValidationException;
 import com.google.rpc.Status;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;

@@ -1,6 +1,6 @@
-package dk.via.course_assignment_2.business.persistence;
+package dk.via.shared.business.persistence;
 
-import dk.via.course_assignment_2.model.ProductPart;
+import dk.via.shared.model.ProductPart;
 
 import java.util.Collection;
 

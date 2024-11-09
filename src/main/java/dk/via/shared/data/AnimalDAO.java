@@ -1,10 +1,10 @@
-package dk.via.course_assignment_2.data;
+package dk.via.shared.data;
 
-import dk.via.course_assignment_2.business.persistence.AnimalPersistence;
-import dk.via.course_assignment_2.business.persistence.NotFoundException;
-import dk.via.course_assignment_2.business.persistence.NotImplementedException;
-import dk.via.course_assignment_2.business.persistence.PersistenceException;
-import dk.via.course_assignment_2.model.Animal;
+import dk.via.shared.business.persistence.AnimalPersistence;
+import dk.via.shared.business.persistence.NotFoundException;
+import dk.via.shared.business.persistence.NotImplementedException;
+import dk.via.shared.business.persistence.PersistenceException;
+import dk.via.shared.model.Animal;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
@@ -21,13 +21,21 @@ public class AnimalDAO implements AnimalPersistence {
     }
 
     @Override
-    public Animal create(double weight, String animalType) throws PersistenceException {
-        throw new NotImplementedException();
+    public Animal create(double weight, String animalType, String arrivalDate, String origin) throws PersistenceException {
+        try {
+            return helper.mapSingle(this::createAnimal, "INSERT INTO animal (weight, animal_type, arrival_date, origin) VALUES (?, ?, ?, ?) RETURNING *", weight, animalType, arrivalDate, origin);
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override
     public Collection<Animal> readAll() throws PersistenceException {
-        return null;
+        try {
+            return helper.map(this::createAnimal, "SELECT * FROM animal");
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override
@@ -55,7 +63,9 @@ public class AnimalDAO implements AnimalPersistence {
         String regNumber = resultSet.getString("reg_number");
         double weight = resultSet.getDouble("weight");
         String animalType = resultSet.getString("animal_type");
-        return new Animal(regNumber, weight, animalType);
+        String arrivalDate = resultSet.getDate("arrival_date").toString();
+        String origin = resultSet.getString("origin");
+        return new Animal(regNumber, weight, animalType, arrivalDate, origin);
     }
 
 

@@ -1,9 +1,9 @@
-package dk.via.course_assignment_2.data;
+package dk.via.shared.data;
 
-import dk.via.course_assignment_2.business.persistence.NotImplementedException;
-import dk.via.course_assignment_2.business.persistence.PartPersistence;
-import dk.via.course_assignment_2.business.persistence.PersistenceException;
-import dk.via.course_assignment_2.model.Part;
+import dk.via.shared.business.persistence.NotImplementedException;
+import dk.via.shared.business.persistence.PartPersistence;
+import dk.via.shared.business.persistence.PersistenceException;
+import dk.via.shared.model.Part;
 import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;

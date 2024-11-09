@@ -1,10 +1,8 @@
-package dk.via.course_assignment_2.business.persistence;
+package dk.via.shared.business.persistence;
 
-import dk.via.course_assignment_2.model.Part;
-import dk.via.course_assignment_2.model.Product;
+import dk.via.shared.model.Product;
 
 import java.util.Collection;
-import java.util.List;
 
 
 public interface ProductPersistence {

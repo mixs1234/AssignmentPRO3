@@ -1,4 +1,4 @@
-package dk.via.course_assignment_2.data;
+package dk.via.shared.data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

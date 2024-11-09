@@ -1,4 +1,4 @@
-package dk.via.course_assignment_2.model;
+package dk.via.shared.model;
 
 import java.util.List;
 
