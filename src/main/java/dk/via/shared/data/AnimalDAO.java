@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Collection;
 
 @Component
@@ -23,7 +24,8 @@ public class AnimalDAO implements AnimalPersistence {
     @Override
     public Animal create(double weight, String animalType, String arrivalDate, String origin) throws PersistenceException {
         try {
-            return helper.mapSingle(this::createAnimal, "INSERT INTO animal (weight, animal_type, arrival_date, origin) VALUES (?, ?, ?, ?) RETURNING *", weight, animalType, arrivalDate, origin);
+            LocalDate arrivalLocalDate = LocalDate.parse(arrivalDate);
+            return helper.mapSingle(this::createAnimal, "INSERT INTO animal (weight, animal_type, arrival_date, origin) VALUES (?, ?, ?, ?) RETURNING *", weight, animalType, arrivalLocalDate, origin);
         } catch (SQLException e) {
             throw new PersistenceException(e);
         }

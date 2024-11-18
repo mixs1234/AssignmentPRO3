@@ -1,4 +1,4 @@
-package dk.via.course_assignment_4.service;
+package dk.via.shared.service;
 
 import com.rabbitmq.client.*;
 

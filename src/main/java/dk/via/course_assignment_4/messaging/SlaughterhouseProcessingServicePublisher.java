@@ -1,6 +1,6 @@
-package dk.via.course_assignment_4;
+package dk.via.course_assignment_4.messaging;
 
-import dk.via.course_assignment_4.service.Publisher;
+import dk.via.shared.service.Publisher;
 
 public class SlaughterhouseProcessingServicePublisher extends Publisher {
 

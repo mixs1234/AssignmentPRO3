@@ -7,6 +7,7 @@ import dk.via.shared.business.persistence.ValidationException;
 import dk.via.shared.model.Animal;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

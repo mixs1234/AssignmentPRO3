@@ -1,6 +1,7 @@
 package dk.via.course_assignment_3.service;
 
 import dk.via.course_assignment_3.business.SlaughterhouseRegistrationSystem;
+import dk.via.course_assignment_3.messaging.SlaughterhouseRegistrationServicePublisher;
 import dk.via.shared.business.persistence.NotFoundException;
 import dk.via.shared.business.persistence.PersistenceException;
 import dk.via.shared.business.persistence.ValidationException;
@@ -16,9 +17,11 @@ import java.util.List;
 public class SlaughterhouseRegistrationService {
 
     private final SlaughterhouseRegistrationSystem system;
+    private final SlaughterhouseRegistrationServicePublisher publisher;
 
     public SlaughterhouseRegistrationService(SlaughterhouseRegistrationSystem system) {
         this.system = system;
+        this.publisher = new SlaughterhouseRegistrationServicePublisher("station_exchange");
     }
 
     @ExceptionHandler
@@ -33,7 +36,9 @@ public class SlaughterhouseRegistrationService {
 
     @PostMapping
     public Animal registerAnimal(@RequestBody Animal animal) throws ValidationException, PersistenceException {
-        return system.registerAnimal(animal.getWeight(), animal.getAnimalType(), animal.getArrivalDate(), animal.getOrigin());
+        Animal registeredAnimal = system.registerAnimal(animal.getWeight(), animal.getAnimalType(), animal.getArrivalDate(), animal.getOrigin());
+        publisher.publish("station2.animal.registration", registeredAnimal.getRegNumber());
+        return registeredAnimal;
     }
 
     @GetMapping("/{regNumber}")

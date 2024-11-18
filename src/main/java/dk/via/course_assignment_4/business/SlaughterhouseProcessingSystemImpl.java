@@ -42,11 +42,14 @@ public class SlaughterhouseProcessingSystemImpl implements SlaughterhouseProcess
             parts.add(part);
             animalWeight -= partWeight;
         }
+
+        List<Part> partCreated = new ArrayList<>();
+
         for (Part part : parts) {
-            registerPart(part.getAnimalRegNumber(), part.getPartType(), part.getWeight());
+            partCreated.add(registerPart(part.getAnimalRegNumber(), part.getPartType(), part.getWeight()));
         }
 
-        return parts;
+        return partCreated;
     }
 
     @Override
@@ -56,8 +59,7 @@ public class SlaughterhouseProcessingSystemImpl implements SlaughterhouseProcess
         }
 
         Part part = new Part(null, animalRegNumber, partType, weight);
-        partPersistence.create(part.getAnimalRegNumber(), part.getPartType(), part.getWeight());
-        return part;
+        return partPersistence.create(part.getAnimalRegNumber(), part.getPartType(), part.getWeight());
     }
 
     @Override
@@ -70,6 +72,7 @@ public class SlaughterhouseProcessingSystemImpl implements SlaughterhouseProcess
 
         List<Product> products = new ArrayList<>();
         Product product = productPersistence.create(productType);
+
         for (String partId : partIds) {
             Part part = partPersistence.read(partId);
             registerProduct(product.getProductID(), part.getPartID());

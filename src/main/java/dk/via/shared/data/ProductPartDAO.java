@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 @Component
 public class ProductPartDAO implements ProductPartPersistence {
@@ -21,8 +22,13 @@ public class ProductPartDAO implements ProductPartPersistence {
     }
 
     @Override
-    public void create(String partID, String productID) throws PersistenceException {
-        throw new NotImplementedException();
+    public List<ProductPart> create(String partID, String productID) throws PersistenceException {
+        try {
+            return helper.map(this::createProductPart,
+                    "INSERT INTO product_part (part_id, product_id) VALUES (CAST(? AS UUID), CAST(? AS UUID))", partID, productID);
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override

@@ -21,12 +21,20 @@ public class PartDAO implements PartPersistence {
 
     @Override
     public Part create(String animalRegNumber, String partType, double weight) throws PersistenceException {
-        throw new NotImplementedException();
+        try {
+            return helper.mapSingle(this::createPart, "INSERT INTO part (animal_reg_number, part_type, weight) VALUES (CAST(? AS UUID), ?, ?) RETURNING *", animalRegNumber, partType, weight);
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override
     public Collection<Part> readAll() throws PersistenceException {
-        throw new NotImplementedException();
+        try {
+            return helper.map(this::createPart, "SELECT * FROM part");
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override

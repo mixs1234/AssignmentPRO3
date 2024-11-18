@@ -22,17 +22,29 @@ public class ProductDAO implements ProductPersistence {
 
     @Override
     public Product create(String productType) throws PersistenceException {
-        throw new NotImplementedException();
+        try {
+            return helper.mapSingle(this::createProduct, "INSERT INTO product (product_type) VALUES (?) RETURNING *", productType);
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override
     public Collection<Product> readAll() throws PersistenceException {
-        throw new NotImplementedException();
+        try {
+            return helper.map(this::createProduct, "SELECT * FROM product");
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override
     public Collection<Product> readAllFromPart(String partID) throws PersistenceException {
-        throw new NotImplementedException();
+        try {
+            return helper.map(this::createProduct, "SELECT * FROM product WHERE product_id IN (SELECT product_id FROM product_part WHERE part_id = CAST(? AS UUID))", partID);
+        } catch (SQLException e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override
